@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Country Dropdown</title>
+  <style> body { font-family: Arial; padding: 20px; } </style>
+</head>
+<body>
+  <h2>Country Dropdown</h2>
+  <label>Continent:</label>
+  <select id="continent">
+    <option value="">Select</option>
+    <option>Africa</option>
+    <option>Asia</option>
+    <option>Europe</option>
+  </select>
+
+  <label>Country:</label>
+  <select id="country"></select>
+
+  <script>
+    const data = {
+      "Africa": ["Nigeria","Egypt","South Africa"],
+      "Asia": ["India","China","Japan"],
+      "Europe": ["France","Germany","Italy"]
+    };
+
+    document.getElementById("continent").addEventListener("change", function(){
+      const countries = data[this.value] || [];
+      const cDrop = document.getElementById("country");
+      cDrop.innerHTML = "";
+      countries.forEach(ct=>{
+        let opt = document.createElement("option");
+        opt.text = ct;
+        cDrop.add(opt);
+      });
+    });
+  </script>
+</body>
+</html>
+ 

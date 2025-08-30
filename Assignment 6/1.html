@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form Validation</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .error { color: red; font-size: 14px; }
+    .success { color: green; font-size: 14px; }
+    input { display: block; margin: 10px 0; padding: 8px; }
+    button { padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form id="regForm">
+    <label>Name:</label>
+    <input type="text" id="name">
+    <span id="nameError" class="error"></span>
+
+    <label>Email:</label>
+    <input type="text" id="email">
+    <span id="emailError" class="error"></span>
+
+    <label>Password:</label>
+    <input type="password" id="password">
+    <span id="passError" class="error"></span>
+
+    <button type="submit" id="submitBtn" disabled>Submit</button>
+  </form>
+
+  <script>
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passInput = document.getElementById("password");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const passRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    function validate() {
+      let valid = true;
+
+      // Name
+      if (nameInput.value.trim() === "") {
+        document.getElementById("nameError").innerText = "Name required";
+        valid = false;
+      } else {
+        document.getElementById("nameError").innerText = "";
+      }
+
+      // Email
+      if (!emailRegex.test(emailInput.value)) {
+        document.getElementById("emailError").innerText = "Invalid email";
+        valid = false;
+      } else {
+        document.getElementById("emailError").innerText = "";
+      }
+
+      // Password
+      if (!passRegex.test(passInput.value)) {
+        document.getElementById("passError").innerText = "Password must be 8+ chars, 1 uppercase, 1 number";
+        valid = false;
+      } else {
+        document.getElementById("passError").innerText = "";
+      }
+
+      submitBtn.disabled = !valid;
+    }
+
+    nameInput.addEventListener("blur", validate);
+    emailInput.addEventListener("blur", validate);
+    passInput.addEventListener("blur", validate);
+    nameInput.addEventListener("input", validate);
+    emailInput.addEventListener("input", validate);
+    passInput.addEventListener("input", validate);
+  </script>
+</body>
+</html>

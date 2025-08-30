@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hex Colour Validation</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #preview { width: 50px; height: 30px; border: 1px solid #000; display:inline-block; }
+  </style>
+</head>
+<body>
+  <h2>Hex Colour Validation</h2>
+  <input type="text" id="colour" placeholder="#FFF">
+  <span id="preview"></span>
+  <p id="msg"></p>
+
+  <script>
+    const c = document.getElementById("colour");
+    const preview = document.getElementById("preview");
+    const msg = document.getElementById("msg");
+    const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+    c.addEventListener("input", ()=>{
+      if(regex.test(c.value)){
+        preview.style.background=c.value;
+        msg.textContent="Valid colour";
+        msg.style.color="green";
+      } else {
+        preview.style.background="white";
+        msg.textContent="Invalid colour";
+        msg.style.color="red";
+      }
+    });
+  </script>
+</body>
+</html>

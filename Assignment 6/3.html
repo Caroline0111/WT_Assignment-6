@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Indian Phone Validation</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <h2>Indian Phone Validation</h2>
+  <input type="text" id="phone" placeholder="+91 9876543210 ">
+  <p id="msg"></p>
+
+  <script>
+    const phone = document.getElementById("phone");
+    const msg = document.getElementById("msg");
+
+
+    const regex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
+
+    phone.addEventListener("input", () => {
+      if (regex.test(phone.value.trim())) {
+        msg.textContent = "Valid Indian number";
+        msg.className = "success";
+      } else {
+        msg.textContent = "Invalid number";
+        msg.className = "error";
+      }
+    });
+  </script>
+</body>
+</html>

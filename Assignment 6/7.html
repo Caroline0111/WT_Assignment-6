@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Date Validation</title>
+  <style> body { font-family: Arial; padding: 20px; } </style>
+</head>
+<body>
+  <h2>Date Validation</h2>
+  <form id="dateForm">
+    <input type="text" id="date" placeholder="DD/MM/YYYY">
+    <button type="submit">Submit</button>
+  </form>
+  <p id="msg" style="color:red"></p>
+
+  <script>
+    const form = document.getElementById("dateForm");
+    const d = document.getElementById("date");
+    const msg = document.getElementById("msg");
+    const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+    form.addEventListener("submit", (e)=>{
+      if(!regex.test(d.value)){
+        msg.textContent="Invalid date format!";
+        e.preventDefault();
+      } else msg.textContent="";
+    });
+  </script>
+</body>
+</html>

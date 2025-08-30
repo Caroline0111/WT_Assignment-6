@@ -1,0 +1,56 @@
+    <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form Builder</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    select,button,input { margin: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Form Builder</h2>
+  <select id="type">
+    <option value="text">Text</option>
+    <option value="email">Email</option>
+    <option value="password">Password</option>
+  </select>
+  <button id="add">Add Field</button>
+
+  <form id="form"></form>
+
+  <script>
+    const form = document.getElementById("form");
+    const add = document.getElementById("add");
+
+    const regexMap = {
+      text: /^[A-Za-z\s]+$/,
+      email: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+      password: /^(?=.*[A-Z])(?=.*\d).{8,}$/
+    };
+
+    add.addEventListener("click", ()=>{
+      let type = document.getElementById("type").value;
+      let input = document.createElement("input");
+      input.type=type;
+      input.placeholder=type;
+      let msg = document.createElement("span");
+      msg.style.marginLeft="10px";
+
+      input.addEventListener("input", ()=>{
+        if(regexMap[type].test(input.value)){
+          msg.textContent="Valid";
+         msg.style.color="green";    
+        } else {
+             msg.textContent="Invalid";
+          msg.style.color="red";
+        }
+      });
+
+      form.appendChild(input);
+      form.appendChild(msg);
+      form.appendChild(document.createElement("br"));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Username Validation</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <h2>Username Validation</h2>
+  <input type="text" id="username" placeholder="Username (3-16 chars)">
+  <p id="msg"></p>
+
+  <script>
+    const u = document.getElementById("username");
+    const msg = document.getElementById("msg");
+    const regex = /^[a-zA-Z0-9_]{3,16}$/;
+
+    u.addEventListener("input", ()=>{
+      if(regex.test(u.value)){
+        msg.textContent="Valid username";
+        msg.className="success";
+      } else {
+        msg.textContent="Invalid username";
+        msg.className="error";
+      }
+    });
+  </script>
+</body>
+</html>

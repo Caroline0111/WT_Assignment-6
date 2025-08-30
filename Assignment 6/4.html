@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Hobbies</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .error { color: red; font-size: 13px; }
+    input { margin: 5px 0; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Hobbies Form</h2>
+  <div id="hobbies">
+    <input type="text" placeholder="Enter hobby">
+  </div>
+  <button id="add">Add Hobby</button>
+
+  <script>
+    const container = document.getElementById("hobbies");
+    const regex = /^[A-Za-z\s]+$/;
+
+    document.getElementById("add").addEventListener("click", ()=>{
+      let input = document.createElement("input");
+      input.type="text";
+      input.placeholder="Enter hobby";
+      input.addEventListener("input", ()=>{
+        if(!regex.test(input.value)){
+          input.style.border="2px solid red";
+        } else {
+          input.style.border="2px solid green";
+        }
+      });
+      container.appendChild(input);
+    });
+  </script>
+</body>
+</html>
